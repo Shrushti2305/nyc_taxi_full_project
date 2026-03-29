@@ -120,10 +120,8 @@ dbt docs generate
 
 ### 8. Start Airflow (Docker)
 ```bash
-docker-compose up -d airflow-apiserver airflow-scheduler airflow-dag-processor airflow-triggerer
+dockercompose up airflow-apiserver airflow-scheduler airflow-dag-processor airflow-triggerer -d
 
-# Wait 30 seconds for services to start
-sleep 30
 
 # Access Airflow UI
 # Open: http://localhost:8080
