@@ -60,7 +60,7 @@ PySpark Historical Processing (batch processing)
 
 ### 1. Clone Repository
 ```bash
-git clone <repo_url>
+git clone https://github.com/Shrushti2305/nyc_taxi_full_project
 cd nyc_taxi_full_project
 ```
 
@@ -120,10 +120,8 @@ dbt docs generate
 
 ### 8. Start Airflow (Docker)
 ```bash
-docker-compose up -d airflow-apiserver airflow-scheduler airflow-dag-processor airflow-triggerer
+dockercompose up airflow-apiserver airflow-scheduler airflow-dag-processor airflow-triggerer -d
 
-# Wait 30 seconds for services to start
-sleep 30
 
 # Access Airflow UI
 # Open: http://localhost:8080
