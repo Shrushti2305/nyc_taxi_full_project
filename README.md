@@ -60,7 +60,7 @@ PySpark Historical Processing (batch processing)
 
 ### 1. Clone Repository
 ```bash
-git clone <repo_url>
+git clone https://github.com/Shrushti2305/nyc_taxi_full_project
 cd nyc_taxi_full_project
 ```
 
