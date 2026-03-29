@@ -248,9 +248,3 @@ airflow dags test nyc_taxi_daily_pipeline 2023-01-01
 - **Blue/Green Strategy**: See `BLUE_GREEN_DEPLOYMENT.md`
 - **Project Overview**: See `README.md`
 - **DAG Code**: See `dags/nyc_taxi_daily_pipeline.py`
-
----
-
-## Points Earned: 25/25 ✅
-
-All requirements met with production-grade implementation.

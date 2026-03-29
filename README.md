@@ -120,7 +120,7 @@ dbt docs generate
 
 ### 8. Start Airflow (Docker)
 ```bash
-dockercompose up airflow-apiserver airflow-scheduler airflow-dag-processor airflow-triggerer -d
+docker compose up airflow-apiserver airflow-scheduler airflow-dag-processor airflow-triggerer -d
 
 
 # Access Airflow UI
@@ -314,12 +314,12 @@ Airflow uses **LocalExecutor** for task execution and is orchestrated with Docke
 
 ### View Logs
 ```bash
-docker-compose logs airflow-scheduler -f
+docker logs -f airflow-scheduler 
 ```
 
 ### Stop Services
 ```bash
-docker-compose down
+docker compose stop
 ```
 
 ---
@@ -366,7 +366,7 @@ SELECT COUNT(*) FROM fct_trips;
 ### Airflow DAG Not Appearing
 ```bash
 # Restart scheduler
-docker-compose restart airflow-scheduler
+docker compose restart airflow-scheduler
 
 # Check DAG syntax
 cd dags && python -m py_compile nyc_taxi_daily_pipeline.py
@@ -392,11 +392,11 @@ python load_data.py
 ### Docker Container Exit Codes
 ```bash
 # View container logs
-docker-compose logs airflow-scheduler
+docker compose logs airflow-scheduler
 
 # Rebuild without cache
-docker-compose build --no-cache
-docker-compose up -d
+docker compose build --no-cache
+docker compose up -d
 ```
 
 ---
@@ -499,7 +499,7 @@ After setup, verify the pipeline works:
 
 For issues or questions:
 1. Check [Troubleshooting](#troubleshooting) section
-2. Review Airflow logs: `docker-compose logs airflow-scheduler`
+2. Review Airflow logs: `docker compose logs airflow-scheduler`
 3. Check dbt logs: `dbt debug`
 4. Open GitHub issue with error details
 
