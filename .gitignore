@@ -1,0 +1,67 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment variables
+.env
+.envairflow
+
+# Data & Databases
+data/
+*.duckdb
+*.duckdb-shm
+*.duckdb-wal
+
+# Airflow
+logs/
+.airflow/
+airflow.cfg (local)
+unittests.cfg
+
+# dbt
+target/
+dbt_packages/
+dbt/logs/
+dbt/target/
+
+# Generated files & Reports
+LOG_SOURCES_REPORT.txt
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp

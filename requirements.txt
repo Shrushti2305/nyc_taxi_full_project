@@ -1,0 +1,6 @@
+dbt-duckdb
+duckdb
+pandas
+apache-airflow
+pyspark
+pyarrow

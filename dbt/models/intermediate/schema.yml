@@ -1,0 +1,54 @@
+version: 2
+
+models:
+  - name: int_trips_enriched
+    description: "Intermediate layer enriching trips with zone information and applied business logic filters"
+    columns:
+      - name: pickup_datetime
+        description: "Trip pickup timestamp"
+        tests:
+          - not_null
+      - name: dropoff_datetime
+        description: "Trip dropoff timestamp"
+        tests:
+          - not_null
+      - name: passenger_count
+        description: "Number of passengers"
+        tests:
+          - not_null
+      - name: trip_distance
+        description: "Trip distance in miles"
+        tests:
+          - not_null
+      - name: pu_location_id
+        description: "Pickup location ID"
+        tests:
+          - not_null
+      - name: do_location_id
+        description: "Dropoff location ID"
+        tests:
+          - not_null
+      - name: fare_amount
+        description: "Fare amount in dollars"
+        tests:
+          - not_null
+      - name: tip_amount
+        description: "Tip amount in dollars"
+        tests:
+          - not_null
+      - name: total_amount
+        description: "Total fare including tips"
+        tests:
+          - not_null
+      - name: trip_duration_minutes
+        description: "Trip duration in minutes"
+        tests:
+          - not_null
+      - name: pickup_zone
+        description: "Zone name for pickup location"
+        tests:
+          - not_null
+      - name: dropoff_zone
+        description: "Zone name for dropoff location"
+        tests:
+          - not_null

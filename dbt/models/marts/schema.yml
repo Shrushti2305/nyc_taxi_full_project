@@ -1,0 +1,156 @@
+version: 2
+
+models:
+  - name: fct_trips
+    description: "Fact table for enriched taxi trips - central source of truth for analytics"
+    columns:
+      - name: trip_id
+        description: "Unique trip identifier (primary key)"
+        tests:
+          - unique
+          - not_null
+      - name: pickup_datetime
+        description: "Trip pickup timestamp"
+        tests:
+          - not_null
+      - name: dropoff_datetime
+        description: "Trip dropoff timestamp"
+        tests:
+          - not_null
+      - name: total_amount
+        description: "Total fare including tips and surcharges"
+        tests:
+          - not_null
+      - name: fare_amount
+        description: "Base fare amount"
+        tests:
+          - not_null
+      - name: tip_amount
+        description: "Tip amount"
+        tests:
+          - not_null
+      - name: passenger_count
+        description: "Number of passengers"
+        tests:
+          - not_null
+      - name: trip_distance
+        description: "Trip distance in miles"
+        tests:
+          - not_null
+      - name: trip_duration_minutes
+        description: "Trip duration in minutes"
+        tests:
+          - not_null
+          - trip_duration_range:
+              min_value: 1
+              max_value: 180
+      - name: pu_location_id
+        description: "Pickup location ID (foreign key to dim_zones)"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_zones')
+              field: location_id
+      - name: do_location_id
+        description: "Dropoff location ID (foreign key to dim_zones)"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_zones')
+              field: location_id
+      - name: pickup_zone
+        description: "Zone name for pickup location"
+        tests:
+          - not_null
+      - name: dropoff_zone
+        description: "Zone name for dropoff location"
+        tests:
+          - not_null
+
+  - name: dim_zones
+    description: "Dimension table for NYC taxi zones"
+    columns:
+      - name: location_id
+        description: "Unique zone identifier (primary key)"
+        tests:
+          - unique
+          - not_null
+      - name: borough
+        description: "NYC borough name"
+        tests:
+          - not_null
+      - name: zone
+        description: "Zone name within borough"
+        tests:
+          - not_null
+      - name: service_zone
+        description: "Service zone category"
+
+  - name: agg_daily_revenue
+    description: "Daily revenue aggregation - key metrics for business intelligence"
+    columns:
+      - name: trip_date
+        description: "Aggregation date (unique)"
+        tests:
+          - not_null
+          - unique
+      - name: total_trips
+        description: "Total number of trips"
+        tests:
+          - not_null
+      - name: total_fare
+        description: "Total base fare revenue"
+        tests:
+          - not_null
+      - name: avg_fare
+        description: "Average base fare per trip"
+        tests:
+          - not_null
+      - name: total_tips
+        description: "Total tip revenue"
+        tests:
+          - not_null
+      - name: tip_rate_percent
+        description: "Tips as percentage of total revenue"
+        tests:
+          - not_null
+      - name: total_revenue
+        description: "Total revenue (fare + tips + surcharges)"
+        tests:
+          - not_null
+
+  - name: agg_zone_performance
+    description: "Zone performance metrics by month with ranking and volume flags"
+    columns:
+      - name: pickup_zone
+        description: "Zone name for pickups"
+        tests:
+          - not_null
+      - name: trip_month
+        description: "Month of trips (truncated to month boundary)"
+        tests:
+          - not_null
+      - name: total_trips
+        description: "Total trips in zone for the month"
+        tests:
+          - not_null
+      - name: avg_trip_distance
+        description: "Average trip distance from zone"
+        tests:
+          - not_null
+      - name: avg_fare
+        description: "Average fare from zone"
+        tests:
+          - not_null
+      - name: total_revenue
+        description: "Total revenue from zone"
+        tests:
+          - not_null
+      - name: revenue_rank
+        description: "Revenue rank within month (1 = highest revenue). Ranked by month for seasonal insights."
+        tests:
+          - not_null
+      - name: high_volume_zone
+        description: "Flag for zones with > 10,000 trips/month (useful for resource planning)"
+        tests:
+          - not_null
